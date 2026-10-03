@@ -1,0 +1,13 @@
+.app-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px 24px;
+  font-size: 0.875rem;
+  opacity: 0.85;
+}
+
+.app-footer a {
+  color: rgb(var(--v-theme-primary));
+}

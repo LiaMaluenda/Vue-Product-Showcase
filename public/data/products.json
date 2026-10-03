@@ -1,0 +1,8 @@
+[
+  { "id": 1, "title": "Mochila Fjallraven", "price": 109.950, "description": "Mochila resistente para el día a día.", "category": "men's clothing", "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg", "rating": { "rate": 3.9, "count": 120 } },
+  { "id": 2, "title": "Polera casual slim fit", "price": 22.300, "description": "Polera de algodón ligera.", "category": "men's clothing", "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg", "rating": { "rate": 4.1, "count": 259 } },
+  { "id": 5, "title": "Pulsera dragón de plata", "price": 6.950, "description": "Pulsera de la colección John Hardy.", "category": "jewelery", "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg", "rating": { "rate": 4.6, "count": 400 } },
+  { "id": 9, "title": "Disco duro externo WD 2TB", "price": 64.000, "description": "Almacenamiento portátil USB 3.0.", "category": "electronics", "image": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg", "rating": { "rate": 3.3, "count": 203 } },
+  { "id": 10, "title": "SSD SanDisk 1TB", "price": 109.000, "description": "Unidad de estado sólido interna.", "category": "electronics", "image": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg", "rating": { "rate": 2.9, "count": 470 } },
+  { "id": 15, "title": "Chaqueta de invierno mujer", "price": 56.990, "description": "Chaqueta abrigada 3 en 1.", "category": "women's clothing", "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg", "rating": { "rate": 2.6, "count": 235 } }
+]

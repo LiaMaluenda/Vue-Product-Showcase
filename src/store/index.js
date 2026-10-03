@@ -1,14 +1,12 @@
 import { createStore } from 'vuex'
+import products from './modules/products'
+import filters from './modules/filters'
+import favorites from './modules/favorites'
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    products,
+    filters,
+    favorites
   }
 })
