@@ -1,50 +1,64 @@
-// Lógica de la lista: lee el estado de Vuex, muestra filtros y tarjetas.
-import { mapState, mapGetters, mapActions } from 'vuex'
+// Lógica de la lista: lee el estado de Vuex, muestra filtros y tarjetas (Composition API).
+import { computed, onMounted } from 'vue'
+import { useStore } from 'vuex'
 import ProductCard from '../ProductCard/ProductCard.vue'
 import { categoryLabel } from '@/utils/formatters'
 
-export default {
-  name: 'ProductList',
+export { ProductCard }
 
-  components: { ProductCard },
+export function useProductList () {
+  const store = useStore()
 
-  computed: {
-    // Lee datos del módulo "products"
-    ...mapState('products', ['loading', 'error', 'categories']),
-    ...mapGetters('products', ['filteredProducts', 'isEmpty']),
-    // Lee la función "isFavorite" del módulo "favorites"
-    ...mapGetters('favorites', ['isFavorite']),
+  // Datos del módulo "products"
+  const loading = computed(() => store.state.products.loading)
+  const error = computed(() => store.state.products.error)
+  const filteredProducts = computed(() => store.getters['products/filteredProducts'])
+  const isEmpty = computed(() => store.getters['products/isEmpty'])
 
-    // Opciones del selector de categoría (incluye "Todas")
-    categoryOptions () {
-      const options = this.categories.map(cat => ({ label: categoryLabel(cat), value: cat }))
-      return [{ label: 'Todas', value: 'all' }, ...options]
-    },
+  // Opciones del selector de categoría (incluye "Todas")
+  const categoryOptions = computed(() => {
+    const options = store.state.products.categories.map(cat => ({ label: categoryLabel(cat), value: cat }))
+    return [{ label: 'Todas', value: 'all' }, ...options]
+  })
 
-    // Cada filtro es un "computed con get y set":
-    // get = leer de Vuex, set = guardar en Vuex.
-    category: {
-      get () { return this.$store.state.filters.category },
-      set (value) { this.setCategory(value) }
-    },
-    search: {
-      get () { return this.$store.state.filters.search },
-      set (value) { this.setSearch(value) }
-    },
-    onlyFavorites: {
-      get () { return this.$store.state.filters.onlyFavorites },
-      set (value) { this.setOnlyFavorites(value) }
-    }
-  },
+  // Cada filtro es un "computed con get y set":
+  // get = leer de Vuex, set = guardar en Vuex.
+  const category = computed({
+    get: () => store.state.filters.category,
+    set: value => store.dispatch('filters/setCategory', value)
+  })
+  const search = computed({
+    get: () => store.state.filters.search,
+    set: value => store.dispatch('filters/setSearch', value)
+  })
+  const onlyFavorites = computed({
+    get: () => store.state.filters.onlyFavorites,
+    set: value => store.dispatch('filters/setOnlyFavorites', value)
+  })
 
-  methods: {
-    ...mapActions('products', ['fetchProducts']),
-    ...mapActions('filters', ['setCategory', 'setSearch', 'setOnlyFavorites', 'resetFilters']),
-    ...mapActions('favorites', ['toggleFavorite'])
-  },
+  // Acciones
+  const isFavorite = id => store.getters['favorites/isFavorite'](id)
+  const fetchProducts = () => store.dispatch('products/fetchProducts')
+  const resetFilters = () => store.dispatch('filters/resetFilters')
+  const toggleFavorite = id => store.dispatch('favorites/toggleFavorite', id)
 
   // Ciclo de vida: apenas la lista aparece en pantalla, pide los productos a la API.
-  mounted () {
-    this.fetchProducts()
+  onMounted(() => {
+    fetchProducts()
+  })
+
+  return {
+    loading,
+    error,
+    filteredProducts,
+    isEmpty,
+    categoryOptions,
+    category,
+    search,
+    onlyFavorites,
+    isFavorite,
+    fetchProducts,
+    resetFilters,
+    toggleFavorite
   }
 }

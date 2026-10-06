@@ -1,8 +1,10 @@
+/* Estilos del encabezado */
 .header-title {
   font-weight: 700;
   letter-spacing: 0.3px;
 }
 
+/* En pantallas pequeñas (celulares) el título se achica */
 @media (max-width: 600px) {
   .header-title {
     font-size: 1rem;

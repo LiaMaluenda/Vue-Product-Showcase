@@ -1,5 +1,6 @@
 <template>
   <v-card class="product-card" elevation="3" data-cy="product-card">
+    <!-- Imagen del producto -->
     <div class="product-card__image-wrap">
       <v-img :src="product.image" :alt="product.title" height="200" contain class="product-card__image" />
     </div>
@@ -39,7 +40,7 @@
       </v-btn>
     </v-card-actions>
 
-  
+    <!-- Ventana de detalle -->
     <v-dialog v-model="showDetail" max-width="600">
       <v-card>
         <v-card-title class="product-card__dialog-title">{{ product.title }}</v-card-title>
@@ -57,5 +58,15 @@
   </v-card>
 </template>
 
-<script src="./ProductCard.js"></script>
+<script setup>
+import { useProductCard } from './ProductCard.js'
+
+const props = defineProps({
+  product: { type: Object, required: true },
+  isFavorite: { type: Boolean, default: false }
+})
+const emit = defineEmits(['toggle-favorite'])
+
+const { showDetail, formattedPrice, categoryName, onToggleFavorite } = useProductCard(props, emit)
+</script>
 <style src="./ProductCard.css"></style>

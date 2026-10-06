@@ -1,9 +1,6 @@
-export default {
-  name: 'AppFooter',
+// Lógica del pie de página (Composition API).
+export function useAppFooter () {
+  const year = new Date().getFullYear()
 
-  data () {
-    return {
-      year: new Date().getFullYear()
-    }
-  }
+  return { year }
 }

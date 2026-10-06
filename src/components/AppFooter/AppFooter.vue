@@ -8,5 +8,9 @@
   </v-footer>
 </template>
 
-<script src="./AppFooter.js"></script>
+<script setup>
+import { useAppFooter } from './AppFooter.js'
+
+const { year } = useAppFooter()
+</script>
 <style src="./AppFooter.css"></style>

@@ -12,5 +12,7 @@
   </v-app>
 </template>
 
-<script src="./App.js"></script>
+<script setup>
+import { AppHeader, AppFooter, ProductList } from './App.js'
+</script>
 <style src="./App.css"></style>

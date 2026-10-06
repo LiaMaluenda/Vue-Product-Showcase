@@ -21,5 +21,9 @@
   </v-app-bar>
 </template>
 
-<script src="./AppHeader.js"></script>
+<script setup>
+import { useAppHeader } from './AppHeader.js'
+
+const { favoritesCount, isDark, toggleTheme } = useAppHeader()
+</script>
 <style src="./AppHeader.css"></style>

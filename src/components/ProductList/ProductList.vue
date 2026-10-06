@@ -107,5 +107,13 @@
   </section>
 </template>
 
-<script src="./ProductList.js"></script>
+<script setup>
+import { ProductCard, useProductList } from './ProductList.js'
+
+const {
+  loading, error, filteredProducts, isEmpty, categoryOptions,
+  category, search, onlyFavorites,
+  isFavorite, fetchProducts, resetFilters, toggleFavorite
+} = useProductList()
+</script>
 <style src="./ProductList.css"></style>

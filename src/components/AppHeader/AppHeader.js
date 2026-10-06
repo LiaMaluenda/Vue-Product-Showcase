@@ -1,34 +1,35 @@
-import { mapGetters } from 'vuex'
+// Lógica del encabezado: contador de favoritos y botón de modo oscuro (Composition API).
+import { computed, onMounted } from 'vue'
+import { useStore } from 'vuex'
+import { useTheme } from 'vuetify'
 
 const THEME_KEY = 'vps-theme'
 
-export default {
-  name: 'AppHeader',
+export function useAppHeader () {
+  const store = useStore()   // acceso a Vuex
+  const theme = useTheme()   // acceso al tema de Vuetify
 
-  computed: {
-    ...mapGetters('favorites', { favoritesCount: 'count' }),
+  const favoritesCount = computed(() => store.getters['favorites/count'])
+  const isDark = computed(() => theme.global.name.value === 'dark')
 
-    isDark () {
-      return this.$vuetify.theme.global.name === 'dark'
-    }
-  },
+  function applyTheme (name) {
+    theme.change(name) // cambia entre "light" y "dark"
+  }
 
-  methods: {
-    applyTheme (name) {
-      this.$vuetify.theme.global.name = name
-    },
+  function toggleTheme () {
+    const next = isDark.value ? 'light' : 'dark'
+    applyTheme(next)
+    localStorage.setItem(THEME_KEY, next)
+  }
 
-    toggleTheme () {
-      const next = this.isDark ? 'light' : 'dark'
-      this.applyTheme(next)
-      localStorage.setItem(THEME_KEY, next)
-    }
-  },
-
-  mounted () {
+  // Ciclo de vida: cuando el header aparece en pantalla,
+  // recupera el tema que el usuario eligió la última vez.
+  onMounted(() => {
     const saved = localStorage.getItem(THEME_KEY)
     if (saved === 'dark' || saved === 'light') {
-      this.applyTheme(saved)
+      applyTheme(saved)
     }
-  }
+  })
+
+  return { favoritesCount, isDark, toggleTheme }
 }
