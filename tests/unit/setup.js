@@ -1,4 +1,4 @@
-// El "navegador falso" de Jest no trae ResizeObserver; Vuetify lo necesita.
+// jsdom (el entorno de Jest) no incluye ResizeObserver, que Vuetify necesita.
 global.ResizeObserver = class {
   observe () {}
   unobserve () {}
