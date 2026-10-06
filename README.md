@@ -7,12 +7,15 @@ Catálogo de productos SPA hecho con **Vue 3 + Vue CLI**, que consume **FakeStor
 - Vue CLI 5: `npm install -g @vue/cli`
 
 ## Instalación y uso
+```bash
 npm install                      # instala dependencias
 npm run serve                    # modo desarrollo en http://localhost:8080
+npm run serve -- --mode e2e      # modo desarrollo con los datos locales de public/data
 npm run build                    # versión optimizada en /dist
 npm run test:unit                # pruebas unitarias (Jest)
 npm run test:e2e                 # prueba E2E (Cypress, ventana interactiva)
 npm run test:e2e -- --headless   # prueba E2E sin ventana
+```
 
 ## Estructura
 - src/main.js: arranque (Vue + Vuex + Vuetify)
@@ -40,4 +43,18 @@ npm run test:e2e -- --headless   # prueba E2E sin ventana
 - **¿Nuxt o Quasar?** No se migró: es una SPA de catálogo sin necesidad de SEO/SSR (Nuxt) ni de app móvil o de escritorio inmediata (Quasar). Vue CLI + Vuetify cubre el alcance con menos complejidad; si se necesita app móvil, Quasar sería el siguiente paso.
 
 ## Evidencias
-Capturas de `npm run test:unit`, `npm run test:e2e -- --headless` y de la app (claro, oscuro, móvil, error) en la carpeta `docs/`.
+
+### Pruebas unitarias (Jest)
+![Pruebas unitarias](docs/test-unit.png)
+
+### Prueba E2E (Cypress)
+![Prueba E2E](docs/test-e2e.png)
+
+### Aplicación
+| Modo claro | Modo oscuro |
+| --- | --- |
+| ![Modo claro](docs/app-claro.png) | ![Modo oscuro](docs/app-oscuro.png) |
+
+| Vista móvil | Estado de error de la API |
+| --- | --- |
+| ![Vista móvil](docs/app-movil.png) | ![Error](docs/app-error.png) |

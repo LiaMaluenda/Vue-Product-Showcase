@@ -2,11 +2,12 @@
   "name": "vue-product-showcase",
   "version": "0.1.0",
   "private": true,
-    "scripts": {
+   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e --mode e2e"
+    "test:e2e": "vue-cli-service test:e2e --mode e2e",
+    "deploy": "vue-cli-service build && gh-pages -d dist"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
@@ -26,6 +27,7 @@
     "@vue/vue3-jest": "^27.0.0-alpha.1",
     "babel-jest": "^27.0.6",
     "cypress": "^9.7.0",
+    "gh-pages": "^6.3.0",
     "jest": "^27.0.5"
   }
 }
